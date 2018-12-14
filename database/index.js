@@ -20,10 +20,27 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (/* TODO */) => {
+let save = (repos) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
+
+  // iterate through repos (array and add each to MongoDB)
+  // will grab ony pertaining data and 
+  // repos.forEach(repo => {
+  // 	// each repo will have attributes that we will add based on the schema
+  // 	//do I want to be usign repoSchema.set()?
+  // 	//maybe .create or .insertMany
+  // 	// repoSchema.post('save', function(doc) {
+  // 	// 	console.log('the ', repo, ' has been saved!');
+  // 	// })
+  // });
+
+  Repo.insertMany(repos, function(error, docs) {
+
+  });
+
+
 }
 
 module.exports.save = save;
