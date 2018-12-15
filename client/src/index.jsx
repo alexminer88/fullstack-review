@@ -16,21 +16,7 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // use ajax instead of axios, it might be more, but d/w
-    // var data = {username: term};
-    // var data = 'test';
-    // var success = function() {
-    //   console.log('Success!');
-    //   // I might have to implement a refresh page here later.
-    // };
-    // $.ajax({
-    //   type: "POST",
-    //   url: '/repos/',
-    //   data: data,
-    //   success: success,
-    //   // dataType: 'application/json',
-    //   contentType: 'application/json'
-    // });
+
     axios.post('/repos',
       {username: term}
     )

@@ -12,9 +12,9 @@ let repoSchema = mongoose.Schema({
     // "pushed_at": "2016-10-30T13:43:30Z",
     repoHtml: String,
     user: String,
-    numForks: String,
-    createdAt: String,
-    updatedAt: String
+    numForks: Number,
+    created_at: String,
+    updated_at: String
 
 });
 
@@ -35,10 +35,18 @@ let save = (repos) => {
   // 	// 	console.log('the ', repo, ' has been saved!');
   // 	// })
   // });
-
-  Repo.insertMany(repos, function(error, docs) {
-
+  repos.forEach(repoData => {
+    let repo = new Repo(repoData);
+    repo.save(err => {
+      if (err) {
+        console.log(err);
+      }
+    });
   });
+  // Repo.save()
+  // Repo.insertMany(repos, function(error, docs) {
+
+  // });
 
 
 }
