@@ -1,5 +1,6 @@
 const request = require('request');
 const config = require('../config.js');
+let save = require('../database/index.js');
 
 let getReposByUsername = (username) => {
   console.log('this is from within the github api request! ', username);
@@ -9,7 +10,9 @@ let getReposByUsername = (username) => {
   // The options object has been provided to help you out, 
   // but you'll have to fill in the URL
   let options = {
-    url: `${username}?tab=repositories`,
+    url: `https://api.github.com/users/${username}`,
+    // url: `/users/${username}/repos`,
+    // url: `${username}?tab=repositories`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
@@ -17,9 +20,10 @@ let getReposByUsername = (username) => {
   };
 
   var callback = function (error, response, body) {
-    console.log('hello from the callback of github api request');
     if (!error && response.statusCode == 200) {
+      console.log('hello from the callback of github api request');
       var info = JSON.parse(body);
+      // save(info);
       console.log(info);
     }
   }
