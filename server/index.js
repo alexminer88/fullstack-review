@@ -1,9 +1,9 @@
 const express = require('express');
 let app = express();
-const save = require('./../database/index.js')
+let {save} = require('../database/index.js');
 // const save = require('../database/index.js');
 
-const getReposByUsername = require('./../helpers/github.js')
+let {getReposByUsername} = require('../helpers/github.js'); // destructuring object to get access to function
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true})); 
@@ -18,7 +18,6 @@ app.post('/repos', function (req, res) {
   // console.log(req.body);
   // console.log('body is ', req.body);
   var username = req.body.username;
-  console.log(username);
   getReposByUsername(username);
   // This route should take the github username provided
   // console.log('I see your post request coming in!');

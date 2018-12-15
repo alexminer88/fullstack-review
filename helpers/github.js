@@ -2,6 +2,7 @@ const request = require('request');
 const config = require('../config.js');
 
 let getReposByUsername = (username) => {
+  console.log('this is from within the github api request! ', username);
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
@@ -20,8 +21,6 @@ let getReposByUsername = (username) => {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       console.log(info);
-      // console.log(info.stargazers_count + " Stars");
-      // console.log(info.forks_count + " Forks");
     }
   }
 
