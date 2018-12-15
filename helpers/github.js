@@ -1,8 +1,10 @@
 const request = require('request');
 const config = require('../config.js');
-let save = require('../database/index.js');
+// let {save} = require('../database/index.js');
 
-let getReposByUsername = (username) => {
+let getReposByUsername = (username, callback) => {
+
+  console.log('Hello from within repos by username');
   // console.log('this is from within the github api request! ', username);
   // TODO - Use the request module to request repos for a specific
   // user from the github API
@@ -18,16 +20,6 @@ let getReposByUsername = (username) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
-
-  var callback = function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      // console.log('hello from the callback of github api request');
-      var info = JSON.parse(body);
-      save(info);
-      res.sendStatus(201);
-      console.log(info);
-    }
-  }
 
   request(options, callback);
 
