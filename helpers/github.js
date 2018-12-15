@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('../config.js');
 
-let getReposByUsername = (username,) => {
+let getReposByUsername = (username) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
@@ -14,6 +14,18 @@ let getReposByUsername = (username,) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
+
+  var callback = function (error, response, body) {
+    console.log('hello from the callback of github api request');
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body);
+      console.log(info);
+      // console.log(info.stargazers_count + " Stars");
+      // console.log(info.forks_count + " Forks");
+    }
+  }
+
+  request(options, callback);
 
 }
 
